@@ -37,7 +37,6 @@ namespace RestFulHumanResourcesApi
             services.AddMvc();
             services.AddScoped<IMantenimientoServices, MantenimientoServices>();
             services.AddScoped<IMantenimientoRepository, MantenimientoRepository>();
-            //services.AddControllers();
             services.AddDbContext<DatabaseContext>(options =>
                       options.UseSqlServer(Configuration.GetConnectionString("DbTestHumanResources")));
             AddSwagger(services);
@@ -72,10 +71,8 @@ namespace RestFulHumanResourcesApi
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                //c.SwaggerEndpoint("../swagger/v1/swagger.json", "Banco Guayaquil Seguridad Open Banking V1");
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Crud HumanResources V1");
                 c.RoutePrefix = string.Empty;
-
             });
             app.UseHttpsRedirection();
 

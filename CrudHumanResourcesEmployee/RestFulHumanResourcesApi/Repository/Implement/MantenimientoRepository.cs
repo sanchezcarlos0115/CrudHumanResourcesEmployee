@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using RestFulHumanResourcesApi.Model;
 using RestFulHumanResourcesApi.Repository.Context;
 using RestFulHumanResourcesApi.Repository.Dto;
 using RestFulHumanResourcesApi.Repository.Interface;
@@ -18,7 +20,6 @@ namespace RestFulHumanResourcesApi.Repository.Implement
         {
             this.dbcontext = dbcontext;
         }
-
 
         #region Personas
         /// <summary>
@@ -48,7 +49,7 @@ namespace RestFulHumanResourcesApi.Repository.Implement
         public List<PersonaDto> ConsultarEmpleadosLight()
         {
 
-            var ObjResponse = dbcontext.Persona.FromSqlRaw("exec HumanResources.uspObtenerEmpleados")
+            var ObjResponse = dbcontext.Persona.FromSqlRaw("exec HumanResources.uspObtenerEmpleadosLight")
                                             .AsEnumerable().ToList();
 
             if (ObjResponse is null || !ObjResponse.Any())
@@ -62,5 +63,69 @@ namespace RestFulHumanResourcesApi.Repository.Implement
 
         #endregion Personas
 
+        #region Empleados
+        public List<EmpleadoDto> ConsultarEmpleadosFull()
+        {
+
+            var ObjResponse = dbcontext.Empleado.FromSqlRaw("exec HumanResources.uspObtenerEmpleadosFull")
+                                            .AsEnumerable().ToList();
+
+            if (ObjResponse is null || !ObjResponse.Any())
+            {
+                throw new ApplicationException("ConsultarEmpleadosFull::No existen datos para mostrar");
+
+            }
+
+            return ObjResponse;
+        }
+
+        public EmpleadoDto ConsultarEmpleadoPorId(int id)
+        {
+            var paramId = new SqlParameter("@Id", id);
+            var ObjResponse = dbcontext.Empleado.FromSqlRaw("exec HumanResources.uspObtenerEmpleadoPorId @Id", paramId)
+                                            .AsEnumerable().FirstOrDefault();
+
+            return ObjResponse;
+        }
+
+        public int GuardarEmpleado(EmpleadoDto obj)
+        {
+           
+            var BusinessEntityId = new SqlParameter("@BusinessEntityId", obj.BusinessEntityId);
+            var NationalIdNumber = new SqlParameter("@NationalIdNumber", obj.NationalIdNumber);
+            var LoginId = new SqlParameter("@LoginId", obj.LoginId);
+            var JobTitle = new SqlParameter("@JobTitle", obj.JobTitle);
+            var BirthDate = new SqlParameter("@BirthDate", obj.BirthDate);
+            var MaritalStatus = new SqlParameter("@MaritalStatus", obj.MaritalStatus);
+            var Gender = new SqlParameter("@Gender", obj.Gender);
+            var HireDate = new SqlParameter("@HireDate", obj.HireDate);
+            var VacationHours = new SqlParameter("@VacationHours", obj.VacationHours);
+            var SickLeaveHours = new SqlParameter("@SickLeaveHours", obj.SickLeaveHours);
+            
+            try
+            {
+                var result = dbcontext.ResultadoProceso
+                              .FromSqlRaw("exec HumanResources.usp_InsertarEmpleado @BusinessEntityId,@NationalIdNumber, @LoginId,@JobTitle,@BirthDate,@MaritalStatus,@Gender,@HireDate,@VacationHours,@SickLeaveHours",
+                              BusinessEntityId, NationalIdNumber, LoginId, JobTitle, BirthDate, MaritalStatus, Gender, HireDate, VacationHours, SickLeaveHours).AsEnumerable().FirstOrDefault();
+
+                if (result is null || result.Resultado < 1)
+                {
+                    throw new ApplicationException("ResultadoProceso:: No se proceso ningun registro::");
+                }
+
+                return obj.BusinessEntityId;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("GuardarEmpleado::Exception::" + ex.Message);
+            }
+
+        }
+
+
+
+
+
+        #endregion
     }
 }

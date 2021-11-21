@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RestFulHumanResourcesApi.Model;
 using RestFulHumanResourcesApi.Repository.Dto;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,8 @@ namespace RestFulHumanResourcesApi.Repository.Context
         }
 
         public DbSet<PersonaDto> Persona { get; set; }
+        public DbSet<EmpleadoDto> Empleado { get; set; }
+        public DbSet<ResultadoProceso> ResultadoProceso { get; set; }
+
     }
 }

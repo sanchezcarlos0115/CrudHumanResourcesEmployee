@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using RestFulHumanResourcesApi.Model;
 using RestFulHumanResourcesApi.Services.Interface;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 
 namespace RestFulHumanResourcesApi.Controllers
@@ -27,8 +25,8 @@ namespace RestFulHumanResourcesApi.Controllers
         /// <returns>Listado de personas</returns>
         //[HttpGet("persona")]
         [HttpGet]
-        [ProducesResponseType(200,Type = typeof(List<PersonaType>))]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<PersonaType>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult GetPersonas()
         {
             var lstReg = serv.ConsultarPersonas();
@@ -41,8 +39,8 @@ namespace RestFulHumanResourcesApi.Controllers
         /// </summary>
         /// <returns>retorna listado de empleados</returns>
         [HttpGet("empleados")]
-        [ProducesResponseType(200, Type = typeof(List<PersonaType>))]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<PersonaType>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult GetEmpleadosLight()
         {
 
