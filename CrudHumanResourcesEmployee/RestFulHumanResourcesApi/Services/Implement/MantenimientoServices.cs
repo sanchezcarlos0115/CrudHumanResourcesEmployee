@@ -17,7 +17,7 @@ namespace RestFulHumanResourcesApi.Services.Implement
             this.Repositorio = Repositorio;
         }
 
-        public List<PersonaType> ConsultarPermiso()
+        public List<PersonaType> ConsultarPersonas()
         {
             var objResp = Repositorio.ConsultarPersonas();
             var lstPersonaType = (from item in objResp
@@ -30,9 +30,9 @@ namespace RestFulHumanResourcesApi.Services.Implement
             return lstPersonaType;
         }
 
-        public List<PersonaType> ConsultarEmpleados()
+        public List<PersonaType> ConsultarEmpleadosLight()
         {
-            var objResp = Repositorio.ConsultarEmpleados();
+            var objResp = Repositorio.ConsultarEmpleadosLight();
             var lstPersonaType = (from item in objResp
                                   select new PersonaType
                                   {

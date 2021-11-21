@@ -8,7 +8,7 @@ namespace RestFulHumanResourcesApi.Services.Interface
 {
     public interface IMantenimientoServices
     {
-        List<PersonaType> ConsultarPermiso();
-        List<PersonaType> ConsultarEmpleados();
+        List<PersonaType> ConsultarPersonas();
+        List<PersonaType> ConsultarEmpleadosLight();
     }
 }

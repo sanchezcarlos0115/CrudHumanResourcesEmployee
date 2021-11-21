@@ -7,10 +7,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using RestFulHumanResourcesApi.Repository.Context;
+using RestFulHumanResourcesApi.Repository.Implement;
+using RestFulHumanResourcesApi.Repository.Interface;
+using RestFulHumanResourcesApi.Services.Implement;
+using RestFulHumanResourcesApi.Services.Interface;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace RestFulHumanResourcesApi
@@ -27,10 +34,32 @@ namespace RestFulHumanResourcesApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddMvc();
+            services.AddScoped<IMantenimientoServices, MantenimientoServices>();
+            services.AddScoped<IMantenimientoRepository, MantenimientoRepository>();
+            //services.AddControllers();
             services.AddDbContext<DatabaseContext>(options =>
                       options.UseSqlServer(Configuration.GetConnectionString("DbTestHumanResources")));
+            AddSwagger(services);
+        }
 
+        private void AddSwagger(IServiceCollection services)
+        {
+
+            services.AddSwaggerGen(options =>
+            {
+               
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "RestFulHumanResourcesApi",
+                    Version = "v1",
+                    Description = "Crud que permite mantenimiento de las tablas [HumanResources].[Employee] y [HumanResources].[EmployeePayHistory]"
+                });
+                
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +69,14 @@ namespace RestFulHumanResourcesApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                //c.SwaggerEndpoint("../swagger/v1/swagger.json", "Banco Guayaquil Seguridad Open Banking V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Crud HumanResources V1");
+                c.RoutePrefix = string.Empty;
 
+            });
             app.UseHttpsRedirection();
 
             app.UseRouting();

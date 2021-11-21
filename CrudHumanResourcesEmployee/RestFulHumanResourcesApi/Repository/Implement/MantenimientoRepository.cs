@@ -45,7 +45,7 @@ namespace RestFulHumanResourcesApi.Repository.Implement
         /// Employee
         /// </summary>
         /// <returns></returns>
-        public List<PersonaDto> ConsultarEmpleados()
+        public List<PersonaDto> ConsultarEmpleadosLight()
         {
 
             var ObjResponse = dbcontext.Persona.FromSqlRaw("exec HumanResources.uspObtenerEmpleados")

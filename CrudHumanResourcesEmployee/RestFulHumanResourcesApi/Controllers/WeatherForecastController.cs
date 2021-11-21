@@ -23,6 +23,10 @@ namespace RestFulHumanResourcesApi.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Obtiene registros
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {

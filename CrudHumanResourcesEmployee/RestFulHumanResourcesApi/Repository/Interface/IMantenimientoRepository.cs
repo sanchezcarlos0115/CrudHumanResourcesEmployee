@@ -10,6 +10,6 @@ namespace RestFulHumanResourcesApi.Repository.Interface
     {
 
         List<PersonaDto> ConsultarPersonas();
-        List<PersonaDto> ConsultarEmpleados();
+        List<PersonaDto> ConsultarEmpleadosLight();
     }
 }
