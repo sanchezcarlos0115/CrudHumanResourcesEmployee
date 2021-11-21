@@ -119,6 +119,35 @@ namespace RestFulHumanResourcesApi.Services.Implement
             return objResp;
         }
 
+        public int ActualizarEmpleado(EmpleadoType obj)
+        {
+
+            var objEmpleadodto = new EmpleadoDto
+            {
+                BusinessEntityId = obj.BusinessEntityId,
+                NameDescription = obj.NameDescription,
+                NationalIdNumber = obj.NationalIdNumber,
+                LoginId = obj.LoginId,
+                JobTitle = obj.JobTitle,
+                BirthDate = obj.BirthDate,
+                MaritalStatus = obj.MaritalStatus,
+                Gender = obj.Gender,
+                HireDate = obj.HireDate,
+                VacationHours = obj.VacationHours,
+                SickLeaveHours = obj.SickLeaveHours
+            };
+
+            var objResp = Repositorio.ActualizarEmpleado(objEmpleadodto);
+
+            return objResp;
+        }
+
+        public int EliminarEmpleado(int id)
+        {
+            var objResp = Repositorio.EliminarEmpleado(id);
+            return objResp;
+        }
+
         #endregion
 
     }

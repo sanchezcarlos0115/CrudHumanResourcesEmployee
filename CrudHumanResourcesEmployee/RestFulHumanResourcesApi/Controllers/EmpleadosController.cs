@@ -2,11 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using RestFulHumanResourcesApi.Model;
 using RestFulHumanResourcesApi.Services.Interface;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-//using System.Net;
-using System.Threading.Tasks;
+
 
 
 namespace RestFulHumanResourcesApi.Controllers
@@ -35,7 +32,11 @@ namespace RestFulHumanResourcesApi.Controllers
             return Ok(lstReg);
         }
 
-
+        /// <summary>
+        /// Metodo que obtiene un empleado por su id
+        /// </summary>
+        /// <param name="id">id de empleado</param>
+        /// <returns>retorna un empleado</returns>
         [HttpGet("{id:int}",Name = "GetEmpleado")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EmpleadoType))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -50,7 +51,11 @@ namespace RestFulHumanResourcesApi.Controllers
             return Ok(empleado);
         }
        
-
+        /// <summary>
+        /// Metodo que guarda un empleado
+        /// </summary>
+        /// <param name="empleado">objeto empleado</param>
+        /// <returns>retorna el empleado nuevo</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -71,7 +76,12 @@ namespace RestFulHumanResourcesApi.Controllers
             return CreatedAtRoute("GetEmpleado", new { id = idEmpleado }, empleado);
         }
 
-        // PUT api/<EmpleadosController>/5
+        /// <summary>
+        /// Metodo que actualiza un empleado
+        /// </summary>
+        /// <param name="id">id empleado</param>
+        /// <param name="empleado">objeto empleado actualizar</param>
+        /// <returns>ok</returns>
         [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -88,29 +98,28 @@ namespace RestFulHumanResourcesApi.Controllers
                 return BadRequest();
             }
 
-            
+            serv.ActualizarEmpleado(empleado);
 
             return StatusCode(StatusCodes.Status204NoContent);
         }
 
-        // DELETE api/<EmpleadosController>/5
+        /// <summary>
+        /// Metodo que inactiva un empleado
+        /// </summary>
+        /// <param name="id">id empleado</param>
+        /// <returns>codigo empleado</returns>
         [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult DeleteEmpleado(int id)
         {
-
-            //Productos productos = db.Productos.Find(id);
-            //if (productos == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //db.Productos.Remove(productos);
-            //db.SaveChanges();
-
-            //return Ok(productos);
-            return Ok("Ok");
+            var empleado = serv.ConsultarEmpleadoPorId(id);
+            if (empleado == null)
+            {
+                return NotFound();
+            }
+            var codigo = serv.EliminarEmpleado(id);
+            return Ok(codigo);
         }
     }
 }

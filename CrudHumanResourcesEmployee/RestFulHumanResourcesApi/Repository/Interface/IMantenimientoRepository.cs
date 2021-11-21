@@ -18,8 +18,13 @@ namespace RestFulHumanResourcesApi.Repository.Interface
         #region Empleados
         List<EmpleadoDto> ConsultarEmpleadosFull();
         EmpleadoDto ConsultarEmpleadoPorId(int id);
-
         int GuardarEmpleado(EmpleadoDto obj);
+        int ActualizarEmpleado(EmpleadoDto obj);
+        int EliminarEmpleado(int id);
+
+        #endregion
+
+        #region HistorialPagos
 
         #endregion
 

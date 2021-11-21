@@ -110,7 +110,7 @@ namespace RestFulHumanResourcesApi.Repository.Implement
 
                 if (result is null || result.Resultado < 1)
                 {
-                    throw new ApplicationException("ResultadoProceso:: No se proceso ningun registro::");
+                    throw new ApplicationException("ResultadoProceso:: No se ingreso ningun registro::");
                 }
 
                 return obj.BusinessEntityId;
@@ -122,9 +122,65 @@ namespace RestFulHumanResourcesApi.Repository.Implement
 
         }
 
+        public int ActualizarEmpleado(EmpleadoDto obj)
+        {
+
+            var BusinessEntityId = new SqlParameter("@BusinessEntityId", obj.BusinessEntityId);
+            var JobTitle = new SqlParameter("@JobTitle", obj.JobTitle);
+            var BirthDate = new SqlParameter("@BirthDate", obj.BirthDate);
+            var MaritalStatus = new SqlParameter("@MaritalStatus", obj.MaritalStatus);
+            var Gender = new SqlParameter("@Gender", obj.Gender);
+            var HireDate = new SqlParameter("@HireDate", obj.HireDate);
+            var VacationHours = new SqlParameter("@VacationHours", obj.VacationHours);
+            var SickLeaveHours = new SqlParameter("@SickLeaveHours", obj.SickLeaveHours);
+
+            try
+            {
+                var result = dbcontext.ResultadoProceso
+                              .FromSqlRaw("exec HumanResources.usp_ActualizarEmpleado @BusinessEntityId,@JobTitle,@BirthDate,@MaritalStatus,@Gender,@HireDate,@VacationHours,@SickLeaveHours",
+                              BusinessEntityId, JobTitle, BirthDate, MaritalStatus, Gender, HireDate, VacationHours, SickLeaveHours).AsEnumerable().FirstOrDefault();
+
+                if (result is null || result.Resultado < 1)
+                {
+                    throw new ApplicationException("ResultadoProceso:: No se pudo actualizar el registro::");
+                }
+
+                return obj.BusinessEntityId;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("ActualizarEmpleado::Exception::" + ex.Message);
+            }
+
+        }
+
+        public int EliminarEmpleado(int id)
+        {
+            var Id = new SqlParameter("@Id", id);
+            try
+            {
+                var result = dbcontext.ResultadoProceso
+                              .FromSqlRaw("exec HumanResources.usp_EliminarEmpleadoPorId @Id", Id).AsEnumerable().FirstOrDefault();
+
+                if (result is null || result.Resultado < 1)
+                {
+                    throw new ApplicationException("ResultadoProceso:: No se elimino ningun registro::");
+                }
+
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("GuardarEmpleado::Exception::" + ex.Message);
+            }
+
+        }
 
 
 
+        #endregion
+
+        #region HistorialPagos
 
         #endregion
     }

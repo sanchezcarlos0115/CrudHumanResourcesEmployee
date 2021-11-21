@@ -17,6 +17,8 @@ namespace RestFulHumanResourcesApi.Services.Interface
         List<EmpleadoType> ConsultarEmpleadosFull();
         EmpleadoType ConsultarEmpleadoPorId(int id);
         int GuardarEmpleado(EmpleadoType obj);
+        int ActualizarEmpleado(EmpleadoType obj);
+        int EliminarEmpleado(int id);
 
         #endregion
 

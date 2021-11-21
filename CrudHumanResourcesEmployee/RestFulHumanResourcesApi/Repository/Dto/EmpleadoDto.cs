@@ -20,10 +20,7 @@ namespace RestFulHumanResourcesApi.Repository.Dto
 
         [Column("LoginID")]
         public string LoginId { get; set; }
-        //[Column("OrganizationNode")]
-        //public string OrganizationNode { get; set; }
-        //[Column("OrganizationLevel")]
-        //public int? OrganizationLevel { get; set; }
+       
         [Column("JobTitle")]
         public string JobTitle { get; set; }
         [Column("BirthDate")]
@@ -35,21 +32,13 @@ namespace RestFulHumanResourcesApi.Repository.Dto
         [Column("HireDate")]
         public DateTime HireDate { get; set; }
 
-        //[Column("SalariedFlag")]
-        //public bool SalariedFlag { get; set; } se llena por defecto 1
-
+      
         [Column("VacationHours")]
         public short VacationHours { get; set; }//restriccion de ingreso de a 240
 
         [Column("SickLeaveHours")]
         public short SickLeaveHours { get; set; }//restriccion de ingreso de 0 a 120
 
-        //[Column("CurrentFlag")]
-        //public bool CurrentFlag { get; set; } se llena por defecto con 1
-        //[Column("rowguid")]
-        //public string Rowguid { get; set; } se genera por defecto
-
-        //[Column("ModifiedDate")]
-        //public DateTime ModifiedDate { get; set; } se genera por defecto
+     
     }
 }
