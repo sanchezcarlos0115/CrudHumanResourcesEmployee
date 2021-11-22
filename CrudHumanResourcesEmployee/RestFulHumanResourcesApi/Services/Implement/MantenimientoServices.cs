@@ -150,5 +150,27 @@ namespace RestFulHumanResourcesApi.Services.Implement
 
         #endregion
 
+        #region Historial Pagos
+
+        public List<HistorialPagoType> ConsultarHistorialPagosFull()
+        {
+            var objResp = Repositorio.ConsultarHistorialPagosFull();
+            var lstEmpleadoType = (from item in objResp
+                                   select new HistorialPagoType
+                                   {
+                                       BusinessEntityId = item.BusinessEntityId,
+                                       Rate = item.Rate,
+                                       RateChangeDate = item.RateChangeDate,
+                                       PayFrequency = Convert.ToInt16(item.PayFrequency)     
+                                   }).ToList();
+
+            return lstEmpleadoType;
+        }
+
+
+        #endregion
+
+
+
     }
 }

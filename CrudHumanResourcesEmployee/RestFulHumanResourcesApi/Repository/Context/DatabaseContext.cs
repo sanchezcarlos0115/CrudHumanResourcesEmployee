@@ -19,6 +19,7 @@ namespace RestFulHumanResourcesApi.Repository.Context
         public DbSet<PersonaDto> Persona { get; set; }
         public DbSet<EmpleadoDto> Empleado { get; set; }
         public DbSet<ResultadoProceso> ResultadoProceso { get; set; }
+        public DbSet<HistorialPagoDto> HistorialPago { get; set; }
 
     }
 }

@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace RestFulHumanResourcesApi.Model
+namespace HumanResourcesWebApp.Models
 {
     public class HistorialPagoType
     {
-        [JsonPropertyName("businessentityId")]
+        [Required]
         public int BusinessEntityId { get; set; }
 
-        [JsonPropertyName("ratechangedate")]
+        [Required]
         public DateTime RateChangeDate { get; set; }
-        [JsonPropertyName("rate")]
+        [Required]
         public decimal Rate { get; set; }
-        [JsonPropertyName("payfrequency")]
+        [Required]
         public short PayFrequency { get; set; }
     }
 }

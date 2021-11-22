@@ -22,5 +22,11 @@ namespace RestFulHumanResourcesApi.Services.Interface
 
         #endregion
 
+        #region Historial Pagos
+        List<HistorialPagoType> ConsultarHistorialPagosFull();
+
+        #endregion
+
+
     }
 }

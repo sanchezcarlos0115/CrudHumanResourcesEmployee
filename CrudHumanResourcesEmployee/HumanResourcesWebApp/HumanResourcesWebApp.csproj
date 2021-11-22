@@ -206,6 +206,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
+    <Compile Include="Controllers\HistorialPagosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -213,6 +214,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EmpleadoType.cs" />
+    <Compile Include="Models\HistorialPagoType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PersonaType.cs" />
@@ -283,6 +285,7 @@
     <Content Include="Views\Empleados\Crear.cshtml" />
     <Content Include="Views\Empleados\Eliminar.cshtml" />
     <Content Include="Views\Empleados\Editar.cshtml" />
+    <Content Include="Views\HistorialPagos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

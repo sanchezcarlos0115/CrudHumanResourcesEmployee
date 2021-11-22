@@ -184,6 +184,23 @@ namespace RestFulHumanResourcesApi.Repository.Implement
 
         #region HistorialPagos
 
+        public List<HistorialPagoDto> ConsultarHistorialPagosFull()
+        {
+
+            var ObjResponse = dbcontext.HistorialPago.FromSqlRaw("exec HumanResources.uspObtenerHistorialPagosFull")
+                                            .AsEnumerable().ToList();
+
+            if (ObjResponse is null || !ObjResponse.Any())
+            {
+                throw new ApplicationException("ConsultarHistorialPagosFull::No existen datos para mostrar");
+
+            }
+
+            return ObjResponse;
+        }
+
+
+
         #endregion
     }
 }

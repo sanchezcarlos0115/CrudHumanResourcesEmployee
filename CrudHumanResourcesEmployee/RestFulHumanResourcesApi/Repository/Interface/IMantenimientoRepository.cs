@@ -26,6 +26,8 @@ namespace RestFulHumanResourcesApi.Repository.Interface
 
         #region HistorialPagos
 
+        List<HistorialPagoDto> ConsultarHistorialPagosFull();
+
         #endregion
 
     }

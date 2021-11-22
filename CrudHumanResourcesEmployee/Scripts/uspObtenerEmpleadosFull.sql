@@ -1,7 +1,7 @@
 USE [AdventureWorks2019]
 GO
 
-/****** Object:  StoredProcedure [HumanResources].[uspObtenerEmpleadosFull]    Script Date: 22/11/2021 10:02:30 ******/
+/****** Object:  StoredProcedure [HumanResources].[uspObtenerEmpleadosFull]    Script Date: 22/11/2021 15:40:08 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -34,7 +34,7 @@ BEGIN
 	  FROM [HumanResources].[Employee] e
 	  inner join [Person].[Person] p on e.BusinessEntityID = p.BusinessEntityID 
 	  where e.CurrentFlag = '1'
-	   order by p.ModifiedDate desc;
+	   order by e.ModifiedDate desc;
 END
    
    

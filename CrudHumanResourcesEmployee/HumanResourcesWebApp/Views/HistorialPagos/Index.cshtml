@@ -1,0 +1,74 @@
+﻿@model IEnumerable<HumanResourcesWebApp.Models.HistorialPagoType>
+
+@{
+    ViewBag.Title = "Listado Historial de Pagos";
+}
+
+
+<h2 class="text-info">Listado Historial de Pagos</h2>
+
+<p>
+
+    <a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus"></i> Crear Nuevo</a>
+    @*<a href="@Url.Action("Crear","HistorialPagos")" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus"></i> Crear Nuevo</a>*@
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BusinessEntityId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RateChangeDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayFrequency)
+        </th>
+        <th></th>
+    </tr>
+
+
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BusinessEntityId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RateChangeDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PayFrequency)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+                @*<td>
+                    <a href="@Url.Action("Editar","Empleados",new { id = item.BusinessEntityId })" class="btn btn-primary btn-xs" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="@Url.Action("Eliminar","Empleados",new { id = item.BusinessEntityId })" class="btn btn-danger btn-xs" title="Eliminar"><i class="glyphicon glyphicon-trash"></i> </a>
+
+                </td>*@
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="9">
+                <label id="lblNoData" class="text-warning"> No existen registro para mostrar.</label>
+            </td>
+        </tr>
+    }
+
+</table>
