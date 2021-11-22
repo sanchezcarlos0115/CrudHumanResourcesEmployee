@@ -121,5 +121,8 @@ namespace RestFulHumanResourcesApi.Controllers
             var codigo = serv.EliminarEmpleado(id);
             return Ok(codigo);
         }
+
+        //tinyint SqlByte                       Byte
+
     }
 }
