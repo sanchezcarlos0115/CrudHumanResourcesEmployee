@@ -26,7 +26,7 @@ namespace RestFulHumanResourcesApi.Services.Implement
                                 select new PersonaType
                                 {
                                      BusinessEntityId = item.BusinessEntityId,
-                                      NameDescription = item.NameDescription
+                                      NameDescription = item.NameDescription.Trim()
                                 }).ToList();
 
             return lstPersonaType;
@@ -39,7 +39,7 @@ namespace RestFulHumanResourcesApi.Services.Implement
                                   select new PersonaType
                                   {
                                       BusinessEntityId = item.BusinessEntityId,
-                                      NameDescription = item.NameDescription
+                                      NameDescription = item.NameDescription.Trim()
                                   }).ToList();
 
             return lstPersonaType;
@@ -56,7 +56,7 @@ namespace RestFulHumanResourcesApi.Services.Implement
                                   select new EmpleadoType
                                   {
                                       BusinessEntityId = item.BusinessEntityId,
-                                      NameDescription = item.NameDescription,
+                                      NameDescription = item.NameDescription.Trim(),
                                       NationalIdNumber = item.NationalIdNumber,
                                       LoginId = item.LoginId,
                                       JobTitle = item.JobTitle,
@@ -80,7 +80,7 @@ namespace RestFulHumanResourcesApi.Services.Implement
                 return new EmpleadoType
                 {
                     BusinessEntityId = objResp.BusinessEntityId,
-                    NameDescription = objResp.NameDescription,
+                    NameDescription = objResp.NameDescription.Trim(),
                     NationalIdNumber = objResp.NationalIdNumber,
                     LoginId = objResp.LoginId,
                     JobTitle = objResp.JobTitle,

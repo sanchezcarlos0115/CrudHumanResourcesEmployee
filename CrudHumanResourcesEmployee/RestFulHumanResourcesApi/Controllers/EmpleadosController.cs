@@ -122,7 +122,7 @@ namespace RestFulHumanResourcesApi.Controllers
             return Ok(codigo);
         }
 
-        //tinyint SqlByte                       Byte
+        //tinyint ->Byte
 
     }
 }

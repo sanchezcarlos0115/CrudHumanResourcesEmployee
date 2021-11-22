@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace RestFulHumanResourcesApi.Model
+namespace HumanResourcesWebApp.Models
 {
     public class PersonaType
     {
-
-        [JsonPropertyName("BusinessEntityId")]
+       
         public int BusinessEntityId { get; set; }
-
-        [JsonPropertyName("namedescription")]
         public string NameDescription { get; set; }
     }
 }
