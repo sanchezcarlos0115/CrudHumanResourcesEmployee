@@ -1,7 +1,7 @@
 USE [AdventureWorks2019]
 GO
 
-/****** Object:  StoredProcedure [HumanResources].[uspObtenerHistorialPagosFull]    Script Date: 22/11/2021 15:57:28 ******/
+/****** Object:  StoredProcedure [HumanResources].[uspObtenerHistorialPagosFull]    Script Date: 22/11/2021 17:03:54 ******/
 SET ANSI_NULLS ON
 GO
 

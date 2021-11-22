@@ -1,0 +1,64 @@
+﻿@model HumanResourcesWebApp.Models.HistorialPagoType
+
+@{
+    ViewBag.Title = "Eliminar Historial de Pagos";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>HistorialPagoType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BusinessEntityId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessEntityId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RateChangeDateInen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RateChangeDateInen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rate)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.PayFrequency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayFrequency)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayFrequencyFormat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayFrequencyFormat)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-info" /> |
+            @Html.ActionLink("Listado de Registros", "Index")
+        </div>
+    }
+</div>

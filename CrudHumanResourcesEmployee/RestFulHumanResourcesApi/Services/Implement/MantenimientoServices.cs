@@ -168,6 +168,60 @@ namespace RestFulHumanResourcesApi.Services.Implement
         }
 
 
+        public HistorialPagoType ConsultarHistorialPagoPorId(int id,DateTime rateChangeDate)
+        {
+            var objResp = Repositorio.ConsultarHistorialPagoPorId(id,rateChangeDate);
+            if (objResp != null)
+            {
+                return new HistorialPagoType
+                {
+                    BusinessEntityId = objResp.BusinessEntityId,
+                    Rate = objResp.Rate,
+                    RateChangeDate = objResp.RateChangeDate,
+                    PayFrequency = Convert.ToInt16(objResp.PayFrequency)
+                };
+            }
+            return new HistorialPagoType();
+        }
+
+        public int GuardarHistorialPago(HistorialPagoType obj)
+        {
+
+            var objHistPagodto = new HistorialPagoDto
+            {
+                BusinessEntityId = obj.BusinessEntityId,
+                Rate = obj.Rate,
+                RateChangeDate = obj.RateChangeDate,
+                PayFrequency = Convert.ToByte(obj.PayFrequency)
+            };
+
+            var objResp = Repositorio.GuardarHistorialPago(objHistPagodto);
+
+            return objResp;
+        }
+
+        public int ActualizarHistorialPago(HistorialPagoType obj)
+        {
+
+            var objHistPagodto = new HistorialPagoDto
+            {
+                BusinessEntityId = obj.BusinessEntityId,
+                Rate = obj.Rate,
+                RateChangeDate = obj.RateChangeDate,
+                PayFrequency = Convert.ToByte(obj.PayFrequency)
+            };
+
+            var objResp = Repositorio.ActualizarHistorialPago(objHistPagodto);
+
+            return objResp;
+        }
+
+        public int EliminarHistorialPago(int id,DateTime rateChangeDate)
+        {
+            var objResp = Repositorio.EliminarHistorialPago(id, rateChangeDate);
+            return objResp;
+        }
+
         #endregion
 
 

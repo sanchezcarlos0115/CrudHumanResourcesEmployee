@@ -41,24 +41,23 @@
                     @Html.DisplayFor(modelItem => item.BusinessEntityId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RateChangeDate)
+                    @Html.DisplayFor(modelItem => item.RateChangeDateInen)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Rate)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.PayFrequency)
                 </td>
+               
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-                @*<td>
-                    <a href="@Url.Action("Editar","Empleados",new { id = item.BusinessEntityId })" class="btn btn-primary btn-xs" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
-                    <a href="@Url.Action("Eliminar","Empleados",new { id = item.BusinessEntityId })" class="btn btn-danger btn-xs" title="Eliminar"><i class="glyphicon glyphicon-trash"></i> </a>
+                    @*<a href="@Url.Action("Editar","HistorialPagos",new { id = item.BusinessEntityId })" class="btn btn-primary btn-xs" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
+                     <a href="@Url.Action("Eliminar","HistorialPagos",new { id = item.BusinessEntityId })" class="btn btn-danger btn-xs" title="Eliminar"><i class="glyphicon glyphicon-trash"></i> </a>*@
 
-                </td>*@
+                    <a href="#" class="btn btn-primary btn-xs" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="#" class="btn btn-danger btn-xs" title="Eliminar"><i class="glyphicon glyphicon-trash"></i> </a>
+
+                </td>
             </tr>
         }
     }

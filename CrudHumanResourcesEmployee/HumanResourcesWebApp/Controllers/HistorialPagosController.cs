@@ -30,12 +30,58 @@ namespace HumanResourcesWebApp.Controllers
                     var lstResponse = resp.Content.ReadAsStringAsync().Result;
                     lstReg = JsonConvert.DeserializeObject<List<HistorialPagoType>>(lstResponse);
                 }
-                //por pruebas tomo los 5 ultimos registros para mejor visualizacion de los datos en la tabla
+                //por pruebas tomo los 10 ultimos registros para mejor visualizacion de los datos en la tabla
                 // hasta que se habilite el pagineo de registro (pendiente) en la visualizacion de la informacion
-                return View(lstReg.Take(5));
+                return View(lstReg.Take(10));
             }
         }
 
+
+        public ActionResult Eliminar(int? id, DateTime rateChangeDate)
+        {
+            HistorialPagoType histpago = new HistorialPagoType();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseUrl);
+                var respTask = client.GetAsync("api/HistorialPagos/" + id.Value.ToString() + "/"+ rateChangeDate.ToString());
+                respTask.Wait();
+                var result = respTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<HistorialPagoType>();
+                    readTask.Wait();
+                    histpago = readTask.Result;
+                }
+                return View(histpago);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Eliminar(HistorialPagoType obj, int id,DateTime rateChangeDate)
+        {
+
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(BaseUrl);
+                    var deleteTask = client.DeleteAsync("api/HistorialPagos/" + id.ToString() + "/"+ rateChangeDate.ToString());
+                    deleteTask.Wait();
+                    var result = deleteTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+
+            }
+            return View(obj);
+        }
 
 
 

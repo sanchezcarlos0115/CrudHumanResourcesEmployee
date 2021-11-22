@@ -27,6 +27,11 @@ namespace RestFulHumanResourcesApi.Repository.Interface
         #region HistorialPagos
 
         List<HistorialPagoDto> ConsultarHistorialPagosFull();
+        HistorialPagoDto ConsultarHistorialPagoPorId(int id, DateTime rateChangeDate);
+        int GuardarHistorialPago(HistorialPagoDto obj);
+        int ActualizarHistorialPago(HistorialPagoDto obj);
+        int EliminarHistorialPago(int Id, DateTime RateChangeDate);
+
 
         #endregion
 

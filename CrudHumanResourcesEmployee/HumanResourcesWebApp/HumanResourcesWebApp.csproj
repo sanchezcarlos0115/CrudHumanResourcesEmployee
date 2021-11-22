@@ -286,6 +286,7 @@
     <Content Include="Views\Empleados\Eliminar.cshtml" />
     <Content Include="Views\Empleados\Editar.cshtml" />
     <Content Include="Views\HistorialPagos\Index.cshtml" />
+    <Content Include="Views\HistorialPagos\Eliminar.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

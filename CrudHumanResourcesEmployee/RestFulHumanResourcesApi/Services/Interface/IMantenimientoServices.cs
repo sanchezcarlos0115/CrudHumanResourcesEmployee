@@ -24,6 +24,10 @@ namespace RestFulHumanResourcesApi.Services.Interface
 
         #region Historial Pagos
         List<HistorialPagoType> ConsultarHistorialPagosFull();
+        HistorialPagoType ConsultarHistorialPagoPorId(int id, DateTime rateChangeDate);
+        int GuardarHistorialPago(HistorialPagoType obj);
+        int ActualizarHistorialPago(HistorialPagoType obj);
+        int EliminarHistorialPago(int id, DateTime rateChangeDate);
 
         #endregion
 

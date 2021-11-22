@@ -173,7 +173,7 @@ namespace RestFulHumanResourcesApi.Repository.Implement
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("GuardarEmpleado::Exception::" + ex.Message);
+                throw new ApplicationException("EliminarEmpleado::Exception::" + ex.Message);
             }
 
         }
@@ -200,6 +200,100 @@ namespace RestFulHumanResourcesApi.Repository.Implement
         }
 
 
+        public HistorialPagoDto ConsultarHistorialPagoPorId(int id,DateTime rateChangeDate)
+        {
+            var BusinessEntityId = new SqlParameter("@BusinessEntityId", id);
+            var RateChangeDate = new SqlParameter("@RateChangeDate", rateChangeDate);
+
+            var ObjResponse = dbcontext.HistorialPago.FromSqlRaw("exec HumanResources.uspObtenerHistorialPagosPorId @BusinessEntityId,@RateChangeDate", BusinessEntityId, RateChangeDate)
+                                            .AsEnumerable().FirstOrDefault();
+
+            return ObjResponse;
+        }
+
+
+        public int GuardarHistorialPago(HistorialPagoDto obj)
+        {
+
+            var BusinessEntityId = new SqlParameter("@BusinessEntityId", obj.BusinessEntityId);
+            var RateChangeDate = new SqlParameter("@RateChangeDate", obj.RateChangeDate);
+            var Rate = new SqlParameter("@Rate", obj.Rate);
+            var PayFrequency = new SqlParameter("@PayFrequency", obj.PayFrequency);
+
+
+            try
+            {
+                var result = dbcontext.ResultadoProceso
+                              .FromSqlRaw("exec HumanResources.usp_InsertarHistorialPago @BusinessEntityId,@RateChangeDate, @Rate,@PayFrequency",
+                              BusinessEntityId, RateChangeDate, Rate, PayFrequency).AsEnumerable().FirstOrDefault();
+
+                if (result is null || result.Resultado < 1)
+                {
+                    throw new ApplicationException("ResultadoProceso:: No se ingreso ningun registro::");
+                }
+
+                return obj.BusinessEntityId;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("GuardarHistorialPago::Exception::" + ex.Message);
+            }
+        }
+
+
+        public int ActualizarHistorialPago(HistorialPagoDto obj)
+        {
+
+            var BusinessEntityId = new SqlParameter("@BusinessEntityId", obj.BusinessEntityId);
+            var RateChangeDate = new SqlParameter("@RateChangeDate", obj.RateChangeDate);
+            var Rate = new SqlParameter("@Rate", obj.Rate);
+            var PayFrequency = new SqlParameter("@PayFrequency", obj.PayFrequency);
+
+
+            try
+            {
+                var result = dbcontext.ResultadoProceso
+                              .FromSqlRaw("exec HumanResources.usp_ActualizarHistorialPago @BusinessEntityId,@RateChangeDate, @Rate,@PayFrequency",
+                              BusinessEntityId, RateChangeDate, Rate, PayFrequency).AsEnumerable().FirstOrDefault();
+
+                if (result is null || result.Resultado < 1)
+                {
+                    throw new ApplicationException("ResultadoProceso:: No se actualizo ningun registro::");
+                }
+
+                return obj.BusinessEntityId;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("ActualizarHistorialPago::Exception::" + ex.Message);
+            }
+
+        }
+
+
+
+        public int EliminarHistorialPago(int Id, DateTime RateChangeDate)
+        {
+            var _businessEntityId = new SqlParameter("@BusinessEntityId", Id);
+            var _rateChangeDate = new SqlParameter("@RateChangeDate", RateChangeDate);
+            try
+            {
+                var result = dbcontext.ResultadoProceso
+                              .FromSqlRaw("exec HumanResources.usp_EliminarHistorialPago @BusinessEntityId,@RateChangeDate", _businessEntityId, _rateChangeDate).AsEnumerable().FirstOrDefault();
+
+                if (result is null || result.Resultado < 1)
+                {
+                    throw new ApplicationException("ResultadoProceso:: No se elimino ningun registro::");
+                }
+
+                return Id;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("EliminarHistorialPago::Exception::" + ex.Message);
+            }
+
+        }
 
         #endregion
     }
