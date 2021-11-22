@@ -1,7 +1,7 @@
 USE [AdventureWorks2019]
 GO
 
-/****** Object:  StoredProcedure [HumanResources].[uspObtenerEmpleadosFull]    Script Date: 21/11/2021 18:18:38 ******/
+/****** Object:  StoredProcedure [HumanResources].[uspObtenerEmpleadosFull]    Script Date: 22/11/2021 10:02:30 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -20,7 +20,7 @@ BEGIN
 	
 	SET NOCOUNT ON;
 
-	SELECT  p.BusinessEntityID
+	SELECT p.BusinessEntityID
       ,(ISNULL(p.Title,'') +' '+ p.LastName +' '+ ISNULL(p.MiddleName,'') +' '+p.FirstName) as NameDescription
       ,NationalIDNumber
       ,LoginID
@@ -34,7 +34,7 @@ BEGIN
 	  FROM [HumanResources].[Employee] e
 	  inner join [Person].[Person] p on e.BusinessEntityID = p.BusinessEntityID 
 	  where e.CurrentFlag = '1'
-	   order by p.LastName,p.FirstName;
+	   order by p.ModifiedDate desc;
 END
    
    

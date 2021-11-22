@@ -73,21 +73,23 @@
                 @Html.DisplayFor(modelItem => item.JobTitle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
+               
+                <label id="BirthDate">@item.BirthDateInen</label>
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.MaritalStatusFormat)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.GenderFormat)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaritalStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HireDate)
-            </td>
-            <td>
+              
+                <label id="HireDate">@item.HireDateInen</label>
+            </td> 
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.VacationHours)
             </td>
-            <td>
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.SickLeaveHours)
             </td>
             <td>
