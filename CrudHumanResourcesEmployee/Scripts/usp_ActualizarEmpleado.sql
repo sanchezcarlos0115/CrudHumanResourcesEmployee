@@ -1,7 +1,7 @@
 USE [AdventureWorks2019]
 GO
 
-/****** Object:  StoredProcedure [HumanResources].[usp_ActualizarEmpleado]    Script Date: 21/11/2021 18:15:51 ******/
+/****** Object:  StoredProcedure [HumanResources].[usp_ActualizarEmpleado]    Script Date: 22/11/2021 14:24:47 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -15,6 +15,8 @@ GO
 -- =============================================
 CREATE PROCEDURE [HumanResources].[usp_ActualizarEmpleado]
 	@BusinessEntityId int,
+	@NationalIdNumber nvarchar(15),
+	@LoginId nvarchar(256),
 	@JobTitle nvarchar(50),
 	@BirthDate date,
 	@MaritalStatus nchar(1),
@@ -28,6 +30,8 @@ DECLARE @result int;
   SET NOCOUNT ON;
 
    UPDATE [HumanResources].[Employee] SET
+    NationalIDNumber = @NationalIdNumber,
+	LoginID = @LoginId,
 	[JobTitle] = @JobTitle,
 	[BirthDate] = @BirthDate,
 	[MaritalStatus] = @MaritalStatus,

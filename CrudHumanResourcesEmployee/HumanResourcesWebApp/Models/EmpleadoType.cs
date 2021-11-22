@@ -12,7 +12,6 @@ namespace HumanResourcesWebApp.Models
         private const string FORMATO_FECHA = "dd/MM/yyyy";
 
         [Required]
-        //[Display(Name = "BusinessEntityId")]
         public int BusinessEntityId { get; set; }
         public string NameDescription { get; set; }
         [Required]
@@ -22,7 +21,15 @@ namespace HumanResourcesWebApp.Models
 
         [Required]
         public string JobTitle { get; set; }
+
+
+    //    [Range(typeof(DateTime), "2004-12-01", "2004-12-31",
+    //ErrorMessage = "Value for {0} must be between {1} and {2}")]
+    //    public datetime Something { get; set; }
+
+
         [Required]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
         public string BirthDateInen
@@ -47,7 +54,7 @@ namespace HumanResourcesWebApp.Models
         {
             get
             {
-                if (HireDate.Equals("M"))
+                if (MaritalStatus.Equals("M"))
                 {
                     return "Casado";
                 }
@@ -96,9 +103,11 @@ namespace HumanResourcesWebApp.Models
         }
 
         [Required]
+        [Range(-40, 240, ErrorMessage = "VacationHours must be between -40 and 240")]
         public short VacationHours { get; set; }
 
         [Required]
+        [Range(0, 120, ErrorMessage = "SickLeaveHours must be between 0 and 120")]
         public short SickLeaveHours { get; set; }
     }
 }

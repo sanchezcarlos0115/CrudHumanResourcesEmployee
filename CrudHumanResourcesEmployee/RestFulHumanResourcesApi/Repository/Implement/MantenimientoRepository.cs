@@ -126,6 +126,8 @@ namespace RestFulHumanResourcesApi.Repository.Implement
         {
 
             var BusinessEntityId = new SqlParameter("@BusinessEntityId", obj.BusinessEntityId);
+            var NationalIdNumber = new SqlParameter("@NationalIdNumber", obj.NationalIdNumber);
+            var LoginId = new SqlParameter("@LoginId", obj.LoginId);
             var JobTitle = new SqlParameter("@JobTitle", obj.JobTitle);
             var BirthDate = new SqlParameter("@BirthDate", obj.BirthDate);
             var MaritalStatus = new SqlParameter("@MaritalStatus", obj.MaritalStatus);
@@ -137,8 +139,8 @@ namespace RestFulHumanResourcesApi.Repository.Implement
             try
             {
                 var result = dbcontext.ResultadoProceso
-                              .FromSqlRaw("exec HumanResources.usp_ActualizarEmpleado @BusinessEntityId,@JobTitle,@BirthDate,@MaritalStatus,@Gender,@HireDate,@VacationHours,@SickLeaveHours",
-                              BusinessEntityId, JobTitle, BirthDate, MaritalStatus, Gender, HireDate, VacationHours, SickLeaveHours).AsEnumerable().FirstOrDefault();
+                              .FromSqlRaw("exec HumanResources.usp_ActualizarEmpleado @BusinessEntityId,@NationalIdNumber,@LoginId,@JobTitle,@BirthDate,@MaritalStatus,@Gender,@HireDate,@VacationHours,@SickLeaveHours",
+                              BusinessEntityId, NationalIdNumber, LoginId, JobTitle, BirthDate, MaritalStatus, Gender, HireDate, VacationHours, SickLeaveHours).AsEnumerable().FirstOrDefault();
 
                 if (result is null || result.Resultado < 1)
                 {

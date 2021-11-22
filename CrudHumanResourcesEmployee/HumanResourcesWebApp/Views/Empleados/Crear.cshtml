@@ -52,6 +52,7 @@
         <label class="control-label col-md-2">BirthDate</label>
         <div class="col-md-10">
             <input type="date" name="BirthDate" id="BirthDate" class="form-control" />
+            @*@Html.TextBoxFor(model => model.BirthDate)*@
             @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -123,6 +124,16 @@
 
         $(document).ready(function () {
             cargar_personas();
+            $('#BirthDate').datepicker({
+                dateFormat: "dd/mm/yyyy",
+                showStatus: true,
+                showWeeks: true,
+                currentText: 'Now',
+                autoSize: true,
+                gotoCurrent: true,
+                showAnim: 'blind',
+                highlightWeek: true
+            });
 
         });
 

@@ -22,114 +22,116 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
-        <h2 class="text-info">Editar Empleado </h2>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <input type="hidden" id="BusinessEntityId" name="BusinessEntityId" value="@Model.BusinessEntityId" />
-        <input type="hidden" id="NationalIdNumber" name="NationalIdNumber" value="@Model.NationalIdNumber" />
-        <input type="hidden" id="LoginId" name="LoginId" value="@Model.LoginId" />
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.BusinessEntityId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.BusinessEntityId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BusinessEntityId, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.NationalIdNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NationalIdNumber, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NationalIdNumber, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.LoginId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LoginId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LoginId, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        <div class="form-group">
-            <label class="control-label col-md-2">JobTitle</label>
-            <div class="col-md-10">
-                <input type="text" name="JobTitle" id="JobTitle" class="form-control" maxlength="50" value="@Model.JobTitle" />
-                @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">BirthDate</label>
-            <div class="col-md-10">
-                <input type="date" name="BirthDate" id="BirthDate" class="form-control" value="@_BirthDate" />
-                @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">MaritalStatus</label>
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.MaritalStatus,
-                  new List<SelectListItem> {
-                       new SelectListItem { Value = "" , Text = "-Seleccione-" },
-                       new SelectListItem { Value = "S" , Text = "Soltero" },
-                       new SelectListItem { Value = "M" , Text = "Casado" }
-                    },
-                  new { htmlAttributes = new { @class = "form-control" } })
-
-                @Html.ValidationMessageFor(model => model.MaritalStatus, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Gender</label>
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Gender,
-                  new List<SelectListItem> {
-                       new SelectListItem { Value = "" , Text = "-Seleccione-" },
-                       new SelectListItem { Value = "M" , Text = "Masculino" },
-                       new SelectListItem { Value = "F" , Text = "Femenino" }
-                    },
-                  new { htmlAttributes = new { @class = "form-control" } })
-
-                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">HireDate</label>
-            <div class="col-md-10">
-                <input type="date" name="HireDate" id="HireDate" class="form-control" value="@_HireDate" />
-                @Html.ValidationMessageFor(model => model.HireDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">VacationHours</label>
-            <div class="col-md-10">
-                <input type="number" name="VacationHours" id="VacationHours"  class="form-control" value="@Model.VacationHours" />
-                @Html.ValidationMessageFor(model => model.VacationHours, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">SickLeaveHours</label>
-            <div class="col-md-10">
-                <input type="number" name="SickLeaveHours" id="SickLeaveHours"  class="form-control" value="@Model.SickLeaveHours" />
-                @Html.ValidationMessageFor(model => model.SickLeaveHours, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Actualizar" class="btn btn-info" />
-            </div>
+    <h2 class="text-info">Editar Empleado </h2>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+    <div class="form-group">
+        <label class="control-label col-md-2">BusinessEntityId</label>
+        <div class="col-md-10">
+            <input type="text" name="BusinessEntityId" id="BusinessEntityId" class="form-control" readonly="readonly" value="@Model.BusinessEntityId" />
         </div>
     </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">NameDescription</label>
+        <div class="col-md-10">
+            <input type="text" name="NameDescription" id="NameDescription" class="form-control" readonly="readonly" value="@Model.NameDescription" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">NationalIdNumber</label>
+        <div class="col-md-10">
+            <input type="text" name="NationalIdNumber" id="NationalIdNumber" class="form-control" maxlength="15" value="@Model.NationalIdNumber" />
+            @Html.ValidationMessageFor(model => model.NationalIdNumber, "", new { @class = "text-danger" })
+        </div>
+    </div> 
+    <div class="form-group">
+        <label class="control-label col-md-2">LoginId</label>
+        <div class="col-md-10">
+            <input type="text" name="LoginId" id="LoginId" class="form-control" maxlength="256" value="@Model.LoginId" />
+            @Html.ValidationMessageFor(model => model.LoginId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="control-label col-md-2">JobTitle</label>
+        <div class="col-md-10">
+            <input type="text" name="JobTitle" id="JobTitle" class="form-control" maxlength="50" value="@Model.JobTitle" />
+            @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">BirthDate</label>
+        <div class="col-md-10">
+            <input type="date" name="BirthDate" id="BirthDate" class="form-control" value="@_BirthDate" />
+            @*@Html.TextBoxFor(model => model.BirthDate, new { @Value = Model.BirthDate.ToString("dd/MMM/yyyy") })*@
+            @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">MaritalStatus</label>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.MaritalStatus,
+              new List<SelectListItem> {
+                   new SelectListItem { Value = "" , Text = "-Seleccione-" },
+                   new SelectListItem { Value = "S" , Text = "Soltero" },
+                   new SelectListItem { Value = "M" , Text = "Casado" }
+                },
+              new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.ValidationMessageFor(model => model.MaritalStatus, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Gender</label>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Gender,
+              new List<SelectListItem> {
+                   new SelectListItem { Value = "" , Text = "-Seleccione-" },
+                   new SelectListItem { Value = "M" , Text = "Masculino" },
+                   new SelectListItem { Value = "F" , Text = "Femenino" }
+                },
+              new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">HireDate</label>
+        <div class="col-md-10">
+            <input type="date" name="HireDate" id="HireDate" class="form-control" value="@_HireDate" />
+            @Html.ValidationMessageFor(model => model.HireDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">VacationHours</label>
+        <div class="col-md-10">
+            <input type="number" name="VacationHours" id="VacationHours" class="form-control" value="@Model.VacationHours" />
+            @Html.ValidationMessageFor(model => model.VacationHours, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">SickLeaveHours</label>
+        <div class="col-md-10">
+            <input type="number" name="SickLeaveHours" id="SickLeaveHours" class="form-control" value="@Model.SickLeaveHours" />
+            @Html.ValidationMessageFor(model => model.SickLeaveHours, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Actualizar" class="btn btn-info" />
+        </div>
+    </div>
+</div>
 }
 
 <div>
