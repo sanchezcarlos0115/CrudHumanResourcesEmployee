@@ -1,0 +1,110 @@
+﻿@model HumanResourcesWebApp.Models.EmpleadoType
+
+@{
+    ViewBag.Title = "Eliminar Empleados";
+}
+
+<h2>Eliminar Empleado</h2>
+<h3>Esta seguro que desea eliminar este registro?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BusinessEntityId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessEntityId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NationalIdNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NationalIdNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaritalStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaritalStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HireDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VacationHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VacationHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SickLeaveHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SickLeaveHours)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-info" /> |
+            @Html.ActionLink("Listado de Empleados", "Index")
+        </div>
+    }
+</div>

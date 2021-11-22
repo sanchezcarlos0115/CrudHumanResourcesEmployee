@@ -39,42 +39,91 @@ namespace HumanResourcesWebApp.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Crear(Productos obj)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        ModelState.AddModelError(string.Empty, "Todos los campos son requeridos.");
-        //        return View(obj);
-        //    }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Crear(EmpleadoType obj)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError(string.Empty, "Todos los campos son requeridos.");
+                return View(obj);
+            }
 
-        //    try
-        //    {
-        //        using (var client = new HttpClient())
-        //        {
-        //            client.BaseAddress = new Uri(BaseUrl + "api/Productos");
-        //            var postTask = client.PostAsJsonAsync<Productos>("Productos", obj);
-        //            postTask.Wait();
-        //            var result = postTask.Result;
-        //            if (result.IsSuccessStatusCode)
-        //            {
-        //                return RedirectToAction("Index");
-        //            }
-        //            else
-        //            {
-        //                ModelState.AddModelError(string.Empty, "Ocurrio un error al guardar los datos.");
-        //                return View(obj);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(BaseUrl + "api/Empleados");
+                    var postTask = client.PostAsJsonAsync<EmpleadoType>("Empleados", obj);
+                    postTask.Wait();
+                    var result = postTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Ocurrio un error al guardar los datos.");
+                        return View(obj);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
 
-        //        ModelState.AddModelError(string.Empty, ex.Message);
-        //        return View(obj);
-        //    }
-        //}
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View(obj);
+            }
+        }
+
+        public ActionResult Eliminar(int? id)
+        {
+            EmpleadoType emp = new EmpleadoType();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseUrl);
+                var respTask = client.GetAsync("api/Empleados/" + id.Value.ToString());
+                respTask.Wait();
+                var result = respTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<EmpleadoType>();
+                    readTask.Wait();
+                    emp = readTask.Result;
+                }
+                return View(emp);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Eliminar(EmpleadoType obj, int id)
+        {
+
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(BaseUrl);
+                    var deleteTask = client.DeleteAsync("api/Empleados/" + id.ToString());
+                    deleteTask.Wait();
+                    var result = deleteTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+
+            }
+            return View(obj);
+        }
+
+
+
 
         public JsonResult ObtenerPersonas()
         {
